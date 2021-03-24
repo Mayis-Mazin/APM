@@ -3,14 +3,24 @@ import { IProduct } from './product';
 @Component({
   selector: 'pm-products',
   templateUrl: './product-list.component.html',
-  styleUrls:['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
 })
-export class ProductListComponent implements OnInit{
+export class ProductListComponent implements OnInit {
   productTitle: string = 'Product List';
-  imageWidth:number=50;
-  imageMargin:number=2;
-  showImage:boolean = false;
-  listFilter:string='cart'
+  imageWidth: number = 50;
+  imageMargin: number = 2;
+  showImage: boolean = false;
+  private _listFilter: string = '';
+
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter=value;
+    console.log('In setter: ',value)
+  }
+
   products: IProduct[] = [
     {
       productId: 1,
@@ -37,8 +47,7 @@ export class ProductListComponent implements OnInit{
   toggleImage(): void {
     this.showImage = !this.showImage;
   }
-  ngOnInit():void{
-    console.log('In OnInit');
-
+  ngOnInit(): void {
+this.listFilter='cart'    
   }
 }
