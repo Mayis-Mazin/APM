@@ -12,7 +12,7 @@ import {
   styleUrls: ['./star.component.css'],
 })
 export class StarComponent implements OnChanges {
-  rating: number = 4;
+@Input()  rating: number = 0;
   cropWidth = 75;
 
   ngOnChanges(): void {
