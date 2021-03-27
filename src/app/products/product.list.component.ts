@@ -7,14 +7,13 @@ import { Subscription } from 'rxjs';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
 })
-export class ProductListComponent implements OnInit, OnDestroy
- {
+export class ProductListComponent implements OnInit, OnDestroy {
   productTitle: string = 'Product List';
   imageWidth: number = 50;
   imageMargin: number = 2;
   showImage: boolean = false;
   errorMessage: string = '';
-  sub!:Subscription;
+  sub!: Subscription;
   private _listFilter: string = '';
 
   get listFilter(): string {
@@ -42,15 +41,15 @@ export class ProductListComponent implements OnInit, OnDestroy
     this.showImage = !this.showImage;
   }
   ngOnInit(): void {
-    this.sub=this.productService.getProducts().subscribe({
-      next: products => { 
+    this.sub = this.productService.getProducts().subscribe({
+      next: (products) => {
         this.products = products;
         this.filteredProducts = this.products;
       },
-      error: err => (this.errorMessage = err)
+      error: (err) => (this.errorMessage = err),
     });
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.sub.unsubscribe();
   }
   onRatingClicked(message: string): void {
